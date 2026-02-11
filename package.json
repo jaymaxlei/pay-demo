@@ -52,6 +52,11 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "packageManager": "pnpm@10.2.0",
+  "pnpm": {
+    "overrides": {
+      "web-streams-polyfill": "3.3.3"
+    }
+  },
   "private": true,
   "scripts": {
     "build": "pnpm run typecheck && react-router build",
