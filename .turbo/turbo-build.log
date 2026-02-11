@@ -1,0 +1,19 @@
+
+
+> pay-demo@0.0.1 build /Users/julianleitloff/Desktop/Antigravity/analysis_repos/idos-sdk-js/examples/pay-demo
+> pnpm run typecheck && react-router build
+
+
+> pay-demo@0.0.1 typecheck /Users/julianleitloff/Desktop/Antigravity/analysis_repos/idos-sdk-js/examples/pay-demo
+> react-router typegen && tsc
+
+[96mapp/providers/state/actors.ts[0m:[93m182[0m:[93m38[0m - [91merror[0m[90m TS2345: [0mArgument of type 'unknown' is not assignable to parameter of type 'string'.
+
+[7m182[0m       const publicNotes = JSON.parse(credential.public_notes);
+[7m   [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Found 1 error in app/providers/state/actors.ts[90m:182[0m
+
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 2.[39m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 2.[39m
