@@ -1,9 +1,24 @@
 import { useState } from "react";
+import { useConnect, useSignMessage } from "wagmi";
 import { useSiwe } from "../providers/siwe-provider";
 
 export function Welcome() {
+  const { signMessageAsync } = useSignMessage();
   const { address, isAuthenticated, signIn, signOut, isConnected } = useSiwe();
+  const { connectors, connectAsync } = useConnect();
   const [debugStatus, setDebugStatus] = useState("");
+
+  const handleWalletConnect = async (connector: any) => {
+    try {
+      setDebugStatus(`Connecting to ${connector.name}...`);
+      await connectAsync({ connector });
+      setDebugStatus("Connected. Requesting SIWE...");
+      await signIn();
+    } catch (e) {
+      setDebugStatus("Error: " + String(e));
+      alert("Connection error: " + String(e));
+    }
+  };
 
   const handleConnect = async () => {
     setDebugStatus("Initiating connection...");
@@ -44,13 +59,28 @@ export function Welcome() {
         </header>
 
         <div className="flex flex-col gap-4">
-          <button
-            type="button"
-            onClick={handleConnect}
-            className="flex items-center justify-center w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-all active:scale-[0.98]"
-          >
-            {isAuthenticated ? "Disconnect Wallet" : "Connect Wallet"}
-          </button>
+          {!isAuthenticated && !isConnected ? (
+            <>
+              {connectors.map((connector) => (
+                <button
+                  key={connector.uid}
+                  type="button"
+                  onClick={() => handleWalletConnect(connector)}
+                  className="flex items-center justify-center w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-all active:scale-[0.98]"
+                >
+                  Connect {connector.name}
+                </button>
+              ))}
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={handleConnect}
+              className="flex items-center justify-center w-full rounded-lg bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-all active:scale-[0.98]"
+            >
+              Sign Out
+            </button>
+          )}
 
           <button
             type="button"
