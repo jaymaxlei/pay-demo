@@ -32,6 +32,10 @@ createAppKit({
         "--w3m-font-family": "Inter, sans-serif",
         "--w3m-accent": "#2563eb", // Blue-600 to match basic brand
     },
+    features: {
+        email: false,
+        socials: [],
+    },
 });
 
 const queryClient = new QueryClient();
