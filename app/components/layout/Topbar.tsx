@@ -20,8 +20,8 @@ export function Topbar() {
             </div>
 
             <div className="flex items-center gap-4 ml-auto">
-                <div className="hidden items-center gap-2 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-medium text-zinc-600 sm:flex">
-                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="hidden items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-600 sm:flex">
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     <span>Mainnet</span>
                 </div>
 

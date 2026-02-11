@@ -64,44 +64,25 @@ export function SiweProvider({ children }: { children: React.ReactNode }) {
   const performSiwe = async (currentAddress: string) => {
     try {
       console.log("performSiwe: starting for", currentAddress);
-      const normalizedAddress = getAddress(currentAddress);
 
-      console.log("performSiwe: fetching nonce/message...");
-      const authResponse = await fetch(`/auth?address=${normalizedAddress}`);
-      if (!authResponse.ok) {
-        throw new Error(`Auth fetch failed: ${authResponse.status}`);
-      }
-      const data = await authResponse.json();
-      console.log("performSiwe: received data", data);
-      const { user } = data;
+      // Mock message generation
+      const message = `Sign in to pay-demo as ${currentAddress} at ${Date.now()}`;
 
-      if (!user || !user.message) {
-        throw new Error("Invalid user data received from /auth");
-      }
-
-      console.log("performSiwe: requesting signature for message:", user.message);
+      console.log("performSiwe: requesting signature for message:", message);
       const signature = await signMessageAsync({
-        message: user.message,
+        message,
       });
       console.log("performSiwe: signature received", signature);
 
-      console.log("performSiwe: verifying signature...");
-      const signInResponse = await fetch("/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ signature, address: normalizedAddress }),
-      });
+      // Mock verification success
+      console.log("performSiwe: mocking server verification success");
+      setIsAuthenticated(true);
 
-      console.log("performSiwe: verification response status", signInResponse.status);
-      if (signInResponse.redirected || signInResponse.ok) {
-        setIsAuthenticated(true);
-        window.location.href = signInResponse.url || "/app";
-      } else {
-        console.error("performSiwe: login failed", await signInResponse.text());
-        alert("Login failed via server");
-      }
+      // Navigate to app after successful login (small delay for UX)
+      setTimeout(() => {
+        window.location.href = "/app";
+      }, 500);
+
     } catch (error) {
       console.error("Sign in error:", error);
       alert("Sign in error: " + String(error));
@@ -140,9 +121,10 @@ export function SiweProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleSignOut = async () => {
-    await fetch("/auth", { method: "DELETE" });
+    // await fetch("/auth", { method: "DELETE" }); // No backend in demo
+    setIsAuthenticated(false);
     disconnect();
-    window.location.reload();
+    window.location.href = "/";
   };
 
   const getEthersSigner = async () => {

@@ -1,5 +1,5 @@
 import { redirect } from "react-router";
-import { sessionStorage } from "~/providers/sessions.server";
+// import { sessionStorage } from "~/providers/sessions.server";
 import { Welcome } from "../welcome/welcome";
 import type { Route } from "./+types/home";
 
@@ -10,16 +10,16 @@ export function meta() {
   ];
 }
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const session = await sessionStorage.getSession(request.headers.get("Cookie"));
-  const user = session.get("user");
+// export async function loader({ request }: Route.LoaderArgs) {
+//   const session = await sessionStorage.getSession(request.headers.get("Cookie"));
+//   const user = session.get("user");
 
-  if (user?.isAuthenticated) {
-    throw redirect("/app");
-  }
+//   if (user?.isAuthenticated) {
+//     throw redirect("/app");
+//   }
 
-  return null;
-}
+//   return null;
+// }
 
 export default function Home() {
   return (

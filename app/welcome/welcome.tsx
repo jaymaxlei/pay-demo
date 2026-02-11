@@ -29,50 +29,61 @@ export function Welcome() {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-50/50">
-      <div className="flex w-full max-w-sm flex-col items-center gap-8 p-8">
-        <header className="flex flex-col items-center gap-2">
-          {/* Logo Placeholder */}
-          <div className="h-10 w-10 mb-2 rounded bg-zinc-900 flex items-center justify-center text-white text-lg font-bold">
-            N
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-50 text-gray-900 font-sans">
+      <div className="w-full max-w-md space-y-8 bg-white p-10 shadow-xl rounded-2xl border border-gray-100">
+        <header className="flex flex-col items-center text-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-900 text-white shadow-md mb-6">
+            <span className="text-xl font-bold">N</span>
           </div>
-          <h1 className="text-center text-xl font-semibold tracking-tight text-zinc-900">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             NeoFinance
           </h1>
-          <p className="text-center text-sm text-zinc-500">
-            The modern way to hold and move money.
+          <p className="mt-2 text-sm text-gray-500 max-w-xs mx-auto">
+            The modern way to hold, move, and grow your money with complete freedom.
           </p>
         </header>
 
-        <div className="w-full space-y-4">
+        <div className="flex flex-col gap-4">
           <button
             type="button"
-            className="w-full h-10 rounded-md bg-zinc-900 font-medium text-sm text-white hover:bg-zinc-800 transition-colors focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 cursor-pointer active:scale-95"
             onClick={handleConnect}
+            className="flex items-center justify-center w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-all active:scale-[0.98]"
           >
-            {isAuthenticated
-              ? `Disconnect (${address?.slice(0, 6)}...${address?.slice(-4)})`
-              : "Connect Wallet"}
+            {isAuthenticated ? "Disconnect Wallet" : "Connect Wallet"}
           </button>
 
           <button
             type="button"
             onClick={handleDemoLogin}
-            className="w-full text-xs text-zinc-400 hover:text-zinc-600 underline cursor-pointer"
+            className="text-xs text-gray-500 hover:text-gray-900 underline underline-offset-4 decoration-gray-300 transition-colors"
           >
-            Start Demo Mode (Skip Wallet)
+            Enter Demo Mode (Skip Wallet)
           </button>
         </div>
 
-        <div className="text-xs text-left w-full bg-gray-100 p-2 rounded text-zinc-500 font-mono break-all">
-          <p>Status: {debugStatus || "IDLE"}</p>
-          <p>Connected: {isConnected ? "YES" : "NO"}</p>
-          <p>Auth: {isAuthenticated ? "YES" : "NO"}</p>
-          <p>Address: {address || "None"}</p>
+        <div className="mt-8 pt-6 border-t border-gray-100">
+          <div className="space-y-2 rounded-lg bg-gray-50 p-3 text-xs font-mono text-gray-500">
+            <div className="flex justify-between">
+              <span>Status:</span>
+              <span className="font-medium text-gray-700">{debugStatus || "IDLE"}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Connected:</span>
+              <span className={isConnected ? "text-green-600 font-bold" : "text-gray-700"}>{isConnected ? "YES" : "NO"}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Auth:</span>
+              <span className={isAuthenticated ? "text-green-600 font-bold" : "text-gray-700"}>{isAuthenticated ? "YES" : "NO"}</span>
+            </div>
+            <div className="flex justify-between flex-wrap gap-2">
+              <span>Address:</span>
+              <span className="font-medium text-gray-700 truncate max-w-[150px]">{address || "None"}</span>
+            </div>
+          </div>
         </div>
 
-        <footer className="mt-4 text-center text-xs text-zinc-400">
-          <p>this is a <span className="font-medium text-zinc-600">idOS demo</span></p>
+        <footer className="text-center text-xs text-gray-400">
+          Powered by <span className="font-medium text-gray-600">idOS</span>
         </footer>
       </div>
     </main>

@@ -79,62 +79,82 @@
 
 :root {
   --radius: 0.625rem;
-  --background: var(--color-white);
-  --foreground: var(--color-neutral-800);
-  --card: var(--color-white);
-  --card-foreground: var(--color-neutral-800);
-  --popover: var(--color-white);
-  --popover-foreground: var(--color-neutral-800);
-  --primary: var(--color-neutral-800);
-  --primary-foreground: var(--color-neutral-50);
-  --secondary: color-mix(in srgb, var(--color-black), transparent 96%);
-  /* Alternatively use tailwind raw colors if supported or simple hex/rgb. 
-     Using color-mix is standard in modern CSS but requires browser support (high now). 
-     The original used --alpha(var(--color-black) / 4%) which looks like a tailwind css function or postcss one?
-     I will use standard CSS or Tailwind colors. 
-     Tailwind v4 supports CSS variables directly.
-     Let's try to map to standard hex or rgb for simplicity if needed, but color-mix is safer.
-  */
-  --secondary-foreground: var(--color-neutral-800);
+  --background: #ffffff;
+  --foreground: #171717;
+  /* neutral-900 */
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --popover: #ffffff;
+  --popover-foreground: #171717;
+  --primary: #171717;
+  --primary-foreground: #fafafa;
+  /* neutral-50 */
+  --secondary: #f5f5f5;
+  /* neutral-100 */
+  --secondary-foreground: #171717;
 
-  --muted: color-mix(in srgb, var(--color-black), transparent 96%);
-  --muted-foreground: color-mix(in srgb, var(--color-neutral-500) 90%, var(--color-black));
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  /* neutral-500 */
 
-  --accent: color-mix(in srgb, var(--color-black), transparent 96%);
-  --accent-foreground: var(--color-neutral-800);
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
 
-  --destructive: var(--color-red-500);
-  --destructive-foreground: var(--color-red-700);
+  --destructive: #ef4444;
+  /* red-500 */
+  --destructive-foreground: #b91c1c;
+  /* red-700 */
 
-  --info: var(--color-blue-500);
-  --info-foreground: var(--color-blue-700);
-  --success: var(--color-emerald-500);
-  --success-foreground: var(--color-emerald-700);
-  --warning: var(--color-amber-500);
-  --warning-foreground: var(--color-amber-700);
+  --info: #3b82f6;
+  /* blue-500 */
+  --info-foreground: #1d4ed8;
+  /* blue-700 */
 
-  --border: color-mix(in srgb, var(--color-black), transparent 92%);
-  --input: color-mix(in srgb, var(--color-black), transparent 90%);
-  --ring: var(--color-neutral-400);
+  --success: #10b981;
+  /* emerald-500 */
+  --success-foreground: #047857;
+  /* emerald-700 */
 
-  --chart-1: var(--color-orange-600);
-  --chart-2: var(--color-teal-600);
-  --chart-3: var(--color-cyan-900);
-  --chart-4: var(--color-amber-400);
-  --chart-5: var(--color-amber-500);
+  --warning: #f59e0b;
+  /* amber-500 */
+  --warning-foreground: #b45309;
+  /* amber-700 */
 
-  --sidebar: var(--color-neutral-50);
-  --sidebar-foreground: color-mix(in srgb, var(--color-neutral-800) 64%, var(--sidebar));
-  --sidebar-primary: var(--color-neutral-800);
-  --sidebar-primary-foreground: var(--color-neutral-50);
-  --sidebar-accent: color-mix(in srgb, var(--color-black), transparent 96%);
-  --sidebar-accent-foreground: var(--color-neutral-800);
-  --sidebar-border: color-mix(in srgb, var(--color-black), transparent 94%);
-  --sidebar-ring: var(--color-neutral-400);
+  --border: #e5e5e5;
+  /* neutral-200 */
+  --input: #e5e5e5;
+  --ring: #a3a3a3;
+  /* neutral-400 */
 
-  --code: var(--color-white);
-  --code-foreground: var(--foreground);
-  --code-highlight: color-mix(in srgb, var(--color-black), transparent 96%);
+  --chart-1: #ea580c;
+  /* orange-600 */
+  --chart-2: #0d9488;
+  /* teal-600 */
+  --chart-3: #164e63;
+  /* cyan-900 */
+  --chart-4: #fbbf24;
+  /* amber-400 */
+  --chart-5: #f59e0b;
+  /* amber-500 */
+
+  --sidebar: #fafafa;
+  /* neutral-50 */
+  --sidebar-foreground: #171717;
+  --sidebar-primary: #171717;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #171717;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #a3a3a3;
+
+  --code: #ffffff;
+  --code-foreground: #171717;
+  --code-highlight: #f5f5f5;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 .dark {

@@ -4,6 +4,12 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ isSsrBuild }) => ({
+  resolve: {
+    alias: {
+      "react-router-dom": "react-router",
+    },
+    dedupe: ["react", "react-dom", "react-router"],
+  },
   build: {
     target: isSsrBuild ? "node22" : "esnext",
   },

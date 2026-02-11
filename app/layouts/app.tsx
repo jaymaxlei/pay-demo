@@ -1,23 +1,31 @@
 import { Outlet, redirect, useRouteLoaderData } from "react-router";
-import { sessionStorage } from "~/providers/sessions.server";
+// import { sessionStorage } from "~/providers/sessions.server";
 import type { Route } from "./+types/app";
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const session = await sessionStorage.getSession(request.headers.get("cookie"));
-  const user = session.get("user");
+// export async function loader({ request }: Route.LoaderArgs) {
+//   const session = await sessionStorage.getSession(request.headers.get("cookie"));
+//   const user = session.get("user");
 
-  if (!user || !user.isAuthenticated) {
-    throw redirect("/");
-  }
+//   if (!user || !user.isAuthenticated) {
+//     throw redirect("/");
+//   }
 
+//   return { user };
+// }
+
+export async function clientLoader() {
+  const user = { isAuthenticated: true, address: "0x123..." }; // Mock user for demo
+  // In a real SPA, check localStorage or global auth state here
+  // if (!user) throw redirect("/");
   return { user };
 }
 
 export const useUser = () => {
-  const data = useRouteLoaderData<typeof loader>("layouts/app");
+  const data = useRouteLoaderData<typeof clientLoader>("layouts/app");
 
   if (!data) {
-    throw new Error("useUser must be used inside a route which is a child of app/layout");
+    // throw new Error("useUser must be used inside a route which is a child of app/layout");
+    return { isAuthenticated: false, address: "" };
   }
 
   return data.user;
