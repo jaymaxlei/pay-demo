@@ -14,12 +14,13 @@ const networks = [mainnet, arbitrum];
 const wagmiAdapter = new WagmiAdapter({
     projectId,
     networks,
+    ssr: true, // Validate hydration for wallet detection
 });
 
 // 4. Create modal
 createAppKit({
     adapters: [wagmiAdapter],
-    networks,
+    networks: networks as any,
     projectId,
     metadata: {
         name: "NeoFinance",
